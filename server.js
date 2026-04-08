@@ -4,7 +4,7 @@ const cors = require("cors");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
-const Appointment = require("./appointment");
+const Appointment = require("./a    ppointment");
 
 const app = express();
 
@@ -20,9 +20,10 @@ mongoose.connect(process.env.MONGO_URI)
 app.post("/appointment", async (req,res)=>{
 
 try{
-
+console.log("Received appointment:", req.body);
 const appointment =
 new Appointment(req.body);
+console.log("Received appointment22:", req.body);
 
 await appointment.save();
 
