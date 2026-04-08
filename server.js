@@ -58,9 +58,7 @@ Pet Type: ${req.body.petType}
 Date: ${req.body.date}
 Message: ${req.body.message}
 `
-
 });
-
 
 res.json({
 message:"Appointment saved"
