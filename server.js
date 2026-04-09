@@ -29,16 +29,14 @@ await appointment.save();
 console.log("saved appointment:");
 
 
-const transporter =
-nodemailer.createTransport({
-
-service:"gmail",
-
-auth:{
-user:process.env.EMAIL,
-pass:process.env.EMAIL_PASS
-}
-
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.EMAIL_PASS
+  }
 });
 
 console.log("transporter created");
