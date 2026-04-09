@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const appointmentSchema = new mongoose.Schema({
 
 name: String,
@@ -13,7 +12,6 @@ createdAt: {
 type: Date,
 default: Date.now
 }
-
 });
 
 module.exports =
