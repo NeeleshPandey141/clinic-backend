@@ -8,7 +8,7 @@ const Appointment = require("./appointment");
 const app = express();
 
 app.use(cors({
-  origin: "https://caninepetandveterinaryclinic.netlify.app"
+  origin: "https://caninepetnandveterinaryclinic.netlify.app"
 }));
 app.use(express.json());
 
