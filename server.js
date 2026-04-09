@@ -26,6 +26,7 @@ new Appointment(req.body);
 console.log("Received appointment22:", req.body);
 
 await appointment.save();
+console.log("saved appointment:");
 
 
 const transporter =
@@ -40,6 +41,7 @@ pass:process.env.EMAIL_PASS
 
 });
 
+console.log("transporter created");
 
 await transporter.sendMail({
 
@@ -59,6 +61,7 @@ Date: ${req.body.date}
 Message: ${req.body.message}
 `
 });
+console.log("mail sent:");
 
 res.json({
 message:"Appointment saved"
