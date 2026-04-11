@@ -39,12 +39,11 @@ res.json({ message:"Appointment saved "});
 console.log("GMAIL_EMAIL value:", process.env.GMAIL_EMAIL);
 console.log("saved appointment:");
 
-try {
-  await transporter.sendMail({
-    from: process.env.GMAIL_EMAIL,
-    to: "petcanine75@gmail.com",
-    subject: "New Appointment Received",
-    text: `
+transporter.sendMail({
+  from: process.env.GMAIL_EMAIL,
+  to: "petcanine75@gmail.com",
+  subject: "New Appointment Received",
+  text: `
 New Appointment Received
 
 Name: ${req.body.name}
@@ -53,12 +52,13 @@ Pet Type: ${req.body.petType}
 Date: ${req.body.date}
 Message: ${req.body.message}
 `
+}).then(() => {
+  console.log("Email sent successfully");
+}).catch((err) => {
+  console.error("Email error code:", err.code);
+  console.error("Email error message:", err.message);
+  console.error("Email error response:", err.response);
 });
-console.log("Email sent");} 
-
-catch (emailError) {
- console.error("Email failed:", emailError.message, emailError);
-}
 console.log("transporter:");}
 
 catch(err){
