@@ -29,32 +29,32 @@ console.log("Received appointment22:", req.body);
 await appointment.save();
 console.log("saved appointment:");
 
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  auth: {
-    user: process.env.EMAIL,
-    pass: process.env.EMAIL_PASS
-  }
-});
+// const transporter = nodemailer.createTransport({
+//   host: "smtp.gmail.com",
+//   port: 465,
+//   secure: true,
+//   auth: {
+//     user: process.env.EMAIL,
+//     pass: process.env.EMAIL_PASS
+//   }
+// });
 
-console.log("transporter created");
+// console.log("transporter created");
 
-await transporter.sendMail({
-from:process.env.EMAIL,
-to:process.env.EMAIL,
-subject:"New Appointment Received",
-text:`
-New Appointment Received
+// await transporter.sendMail({
+// from:process.env.EMAIL,
+// to:process.env.EMAIL,
+// subject:"New Appointment Received",
+// text:`
+// New Appointment Received
 
-Name: ${req.body.name}
-Phone: ${req.body.phone}
-Pet Type: ${req.body.petType}
-Date: ${req.body.date}
-Message: ${req.body.message}
-`
-});
+// Name: ${req.body.name}
+// Phone: ${req.body.phone}
+// Pet Type: ${req.body.petType}
+// Date: ${req.body.date}
+// Message: ${req.body.message}
+// `
+// });
 // const { Resend } = require("resend");
 // const resend = new Resend(process.env.RESEND_API_KEY);
 // await resend.emails.send({
