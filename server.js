@@ -37,6 +37,7 @@ await appointment.save();
 
 res.json({ message:"Appointment saved "});
 
+console.log("GMAIL_EMAIL value:", process.env.GMAIL_EMAIL);
 console.log("saved appointment:");
 
 try {
@@ -57,7 +58,7 @@ Message: ${req.body.message}
 console.log("Email sent");} 
 
 catch (emailError) {
-  console.log("Email failed but appointment saved:", emailError.message);
+ console.error("Email failed:", emailError.message, emailError);
 }
 console.log("transporter:");}
 
