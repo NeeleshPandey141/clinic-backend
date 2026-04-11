@@ -43,6 +43,8 @@ console.log("Email transporter created");
 
 console.log("EMAIL:", process.env.GMAIL_EMAIL);
 console.log("PASS:", process.env.GMAIL_APP_PASSWORD);
+await transporter.verify();
+console.log("SMTP READY");
 
 try {
 
