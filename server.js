@@ -29,20 +29,18 @@ console.log("Received appointment22:", req.body);
 await appointment.save();
 console.log("saved appointment:");
 
-
-
 const transporter = nodemailer.createTransport({
-  host: "smtp-relay.brevo.com",
-  port: 587,
-  secure: false,
+  service: "gmail",
   auth: {
-    user: process.env.BREVO_EMAIL,
-    pass: process.env.BREVO_SMTP_KEY
+    user: process.env.GMAIL_EMAIL,
+    pass: process.env.GMAIL_APP_PASSWORD
   }
-}); 
-console.log("transporter created");
+});
+
+console.log("Email transporter created");
+
 await transporter.sendMail({
-  from: process.env.BREVO_EMAIL,
+  from: process.env.GMAIL_EMAIL,
   to: "petcanine75@gmail.com",
   subject: "New Appointment Received",
   text: `
@@ -53,9 +51,36 @@ Phone: ${req.body.phone}
 Pet Type: ${req.body.petType}
 Date: ${req.body.date}
 Message: ${req.body.message}
-  `
+`
 });
-console.log("Email sent"); 
+console.log("transporter:");
+
+
+// const transporter = nodemailer.createTransport({
+//   host: "smtp-relay.brevo.com",
+//   port: 587,
+//   secure: false,
+//   auth: {
+//     user: process.env.BREVO_EMAIL,
+//     pass: process.env.BREVO_SMTP_KEY
+//   }
+// }); 
+// console.log("transporter created");
+// await transporter.sendMail({
+//   from: process.env.BREVO_EMAIL,
+//   to: "petcanine75@gmail.com",
+//   subject: "New Appointment Received",
+//   text: `
+// New Appointment Received
+
+// Name: ${req.body.name}
+// Phone: ${req.body.phone}
+// Pet Type: ${req.body.petType}
+// Date: ${req.body.date}
+// Message: ${req.body.message}
+//   `
+// });
+// console.log("Email sent"); 
 // console.log("STEP 1: before transporter");
 
 // const transporter = nodemailer.createTransport({
