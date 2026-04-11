@@ -65,21 +65,6 @@ console.log("saved appointment:");
 // });
 // console.log("mail sent:");
 
-await transporter.sendMail({
-  from: process.env.BREVO_EMAIL,
-  to: "petcanine75@gmail.com",
-  subject: "New Appointment Received",
-  text: `
-New Appointment Received
-
-Name: ${req.body.name}
-Phone: ${req.body.phone}
-Pet Type: ${req.body.petType}
-Date: ${req.body.date}
-Message: ${req.body.message}
-  `
-});
-
 const transporter = nodemailer.createTransport({
   host: "smtp-relay.brevo.com",
   port: 587,
