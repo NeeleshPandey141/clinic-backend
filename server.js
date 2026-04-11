@@ -16,6 +16,9 @@ mongoose.connect(process.env.MONGO_URI)
 .then(()=>console.log("MongoDB connected"))
 .catch(err=>console.log(err));
 
+app.get("/", (req, res) => {  //test route to check if server is running
+  res.send("Server is running!");
+});
 app.post("/appointment", async (req,res)=>{
 
 try{
