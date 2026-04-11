@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGO_URI)
 .then(()=>console.log("MongoDB connected"))
 .catch(err=>console.log(err));
 
-app.get("/", (req, res) => {  //test route to check if server is running
+app.get("/", (req, res) => { 
   res.send("Server is running!");
 });
 app.post("/appointment", async (req,res)=>{
@@ -29,13 +29,6 @@ console.log("Received appointment22:", req.body);
 await appointment.save();
 console.log("saved appointment:");
 
-// const transporter = nodemailer.createTransport({
-//   service: "gmail",
-//   auth: {
-//     user: process.env.GMAIL_EMAIL,
-//     pass: process.env.GMAIL_APP_PASSWORD
-//   }
-// });
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
@@ -51,11 +44,13 @@ console.log("Email transporter created");
 console.log("EMAIL:", process.env.GMAIL_EMAIL);
 console.log("PASS:", process.env.GMAIL_APP_PASSWORD);
 
-await transporter.sendMail({
-  from: process.env.GMAIL_EMAIL,
-  to: "petcanine75@gmail.com",
-  subject: "New Appointment Received",
-  text: `
+try {
+
+  await transporter.sendMail({
+    from: process.env.GMAIL_EMAIL,
+    to: "petcanine75@gmail.com",
+    subject: "New Appointment Received",
+    text: `
 New Appointment Received
 
 Name: ${req.body.name}
@@ -65,47 +60,12 @@ Date: ${req.body.date}
 Message: ${req.body.message}
 `
 });
+console.log("Email sent");
+
+} catch (emailError) {
+  console.log("Email failed but appointment saved:", emailError.message);
+}
 console.log("transporter:");
-
-
-// const transporter = nodemailer.createTransport({
-//   host: "smtp-relay.brevo.com",
-//   port: 587,
-//   secure: false,
-//   auth: {
-//     user: process.env.BREVO_EMAIL,
-//     pass: process.env.BREVO_SMTP_KEY
-//   }
-// }); 
-// console.log("transporter created");
-// await transporter.sendMail({
-//   from: process.env.BREVO_EMAIL,
-//   to: "petcanine75@gmail.com",
-//   subject: "New Appointment Received",
-//   text: `
-// New Appointment Received
-
-// Name: ${req.body.name}
-// Phone: ${req.body.phone}
-// Pet Type: ${req.body.petType}
-// Date: ${req.body.date}
-// Message: ${req.body.message}
-//   `
-// });
-// console.log("Email sent"); 
-// console.log("STEP 1: before transporter");
-
-// const transporter = nodemailer.createTransport({
-//   host: "smtp-relay.brevo.com",
-//   port: 587,
-//   secure: false,
-//   auth: {
-//     user: process.env.BREVO_EMAIL,
-//     pass: process.env.BREVO_SMTP_KEY
-//   }
-// });
-
-// console.log("STEP 2: transporter created");
 
 res.json({
 message:"Appointment saved "
@@ -128,6 +88,3 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>
   console.log(`Server running on port ${PORT}`)
 );
-
-// app.listen(5000,
-// ()=>console.log("Server running on port 5000"));
