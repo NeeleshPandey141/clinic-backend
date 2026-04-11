@@ -75,7 +75,8 @@ console.log("Appointment saved response sent");
 console.log(err);
 
 res.status(500).json({
-message:"Error saving appointment"
+message:"Error saving appointment",
+error: err.message 
 });
 }
 });
