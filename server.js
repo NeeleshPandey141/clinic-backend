@@ -29,8 +29,17 @@ console.log("Received appointment22:", req.body);
 await appointment.save();
 console.log("saved appointment:");
 
+// const transporter = nodemailer.createTransport({
+//   service: "gmail",
+//   auth: {
+//     user: process.env.GMAIL_EMAIL,
+//     pass: process.env.GMAIL_APP_PASSWORD
+//   }
+// });
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.GMAIL_EMAIL,
     pass: process.env.GMAIL_APP_PASSWORD
