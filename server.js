@@ -4,12 +4,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const nodemailer = require("nodemailer");
-require("dotenv").config();
-
 const Appointment = require("./appointment");
 const app = express();
 
