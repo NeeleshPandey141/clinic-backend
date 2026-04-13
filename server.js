@@ -83,7 +83,9 @@ console.log("GMAIL_APP_PASSWORD present:", !!process.env.GMAIL_APP_PASSWORD);
 console.log("MONGO_URI present:", !!process.env.MONGO_URI);
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.GMAIL_EMAIL,
     pass: process.env.GMAIL_APP_PASSWORD
