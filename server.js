@@ -80,8 +80,8 @@ const app = express();
 // ✅ FIX 2: Create transporter AFTER dotenv loads, and log credential presence
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 587,
-  secure: false,  
+  port: 465,
+  secure: true,
   auth: {
     user: process.env.GMAIL_EMAIL,
     pass: process.env.GMAIL_APP_PASSWORD
